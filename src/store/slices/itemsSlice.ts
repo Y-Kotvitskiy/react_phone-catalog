@@ -37,7 +37,7 @@ const itemsSlice = createSlice({
       }
     },
 
-    clear: () => {},
+    clear: () => ({}),
   },
 });
 

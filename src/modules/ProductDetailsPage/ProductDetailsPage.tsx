@@ -15,21 +15,25 @@ import BackButton from '../shared/BackButton';
 
 function getSuggestedProducts(
   products: ProductCatalogItem[],
+  itemId: string,
 ): ProductCatalogItem[] {
   if (!products.length) {
     return [];
   }
 
   const maxId = products[products.length - 1].id;
-  const uniqueIds = new Set();
+  const uniqueIds = new Set<number>();
 
-  while (uniqueIds.size < SLIDER_COUNT) {
+  while (uniqueIds.size < SLIDER_COUNT + 1) {
     const randomNumber = Math.floor(Math.random() * maxId) + 1;
 
     uniqueIds.add(randomNumber);
   }
 
-  return products.filter(product => uniqueIds.has(product.id));
+  return Array.from(uniqueIds)
+    .map(num => products[num])
+    .filter(product => product.itemId !== itemId)
+    .slice(0, SLIDER_COUNT);
 }
 
 export const ProductDetailsPage = () => {
@@ -50,10 +54,13 @@ export const ProductDetailsPage = () => {
           <ProductDetailBottom product={productDetail} />
         </>
       )}
-      {catalogProducts.length && (
+      {productDetail && catalogProducts.length > 0 && (
         <CatalogSlider
           title={t('product-detail.may_like')}
-          products={getSuggestedProducts(catalogProducts)}
+          products={getSuggestedProducts(
+            catalogProducts,
+            productDetail?.id || '',
+          )}
           additionalStyles={styles.productDetail__slider_marginTop}
         />
       )}
