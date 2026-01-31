@@ -10,25 +10,22 @@ import { CURRENCY_SYMBOL } from '../constants';
 import Button from '../shared/Button';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { itemsActions } from '../../store/index';
+import {
+  selectCartItems,
+  selectTotalPrice,
+  selectTotalCount,
+} from '../../store/slices/itemsSlice';
 
 const CartPage = () => {
   const { t } = useTranslation();
 
-  const items = useAppSelector(state => state.items);
+  const items = useAppSelector(selectCartItems);
+  const totalPrice = useAppSelector(selectTotalPrice);
+  const totalCount = useAppSelector(selectTotalCount);
+
   const dispatch = useAppDispatch();
 
-  const cartProducts = Object.values(items);
-
-  const totalPrice = cartProducts.reduce(
-    (acc, item) => acc + item.product.price * item.quantity,
-    0,
-  );
-
-  const totalAmount = cartProducts.reduce(
-    (acc, item) => acc + item.quantity,
-    0,
-  );
-  const totalMessage = t('cart.items', { count: totalAmount });
+  const totalMessage = t('cart.items', { count: totalCount });
 
   return (
     <div className="container">
@@ -36,15 +33,15 @@ const CartPage = () => {
       <div className={styles.cart}>
         <h1 className={styles.cart__title}>{t(`cart.title`)}</h1>
 
-        {totalAmount !== 0 && (
+        {totalCount !== 0 && (
           <ul className={styles.cart__items}>
-            {cartProducts.map(({ product }) => (
-              <li key={product.id} className={styles.item}>
+            {items.map(({ id, product, quantity }) => (
+              <li key={id} className={styles.item}>
                 <div className={styles.item__firstRow}>
                   <button
                     className={styles.item__buttonClose}
                     onClick={() =>
-                      dispatch({ type: 'removeFromCart', payload: product.id })
+                      dispatch({ type: 'removeFromCart', payload: id })
                     }
                   ></button>
                   <Link
@@ -69,13 +66,11 @@ const CartPage = () => {
                   <div className={styles.itemAmount}>
                     <button
                       className={styles.itemAmount__button}
-                      disabled={items[product.id].quantity === 1}
+                      disabled={quantity === 1}
                       onClick={() => dispatch(itemsActions.remove(product))}
                       dangerouslySetInnerHTML={{ __html: svgStringMinus }}
                     ></button>
-                    <p className={styles.itemAmount__value}>
-                      {items[product.id].quantity}
-                    </p>
+                    <p className={styles.itemAmount__value}>{quantity}</p>
                     <button
                       className={styles.itemAmount__button}
                       onClick={() => dispatch(itemsActions.add(product))}
@@ -90,7 +85,7 @@ const CartPage = () => {
             ))}
           </ul>
         )}
-        {totalAmount !== 0 && (
+        {totalCount !== 0 && (
           <div className={styles.cart__total}>
             <p className={styles.cart__totalPrice}>
               {CURRENCY_SYMBOL + totalPrice}
