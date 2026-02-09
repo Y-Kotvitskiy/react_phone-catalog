@@ -2,11 +2,22 @@ import { useContext, useEffect, useState } from 'react';
 import { ProductDetailContext } from '../../ProductDetailContext';
 import { ProductDetail } from '../../types/ProductDetail';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { HOME_CATEGORIES_LIST } from '../constants';
+import {
+  getProductDetailId,
+  ProductCatalogContext,
+} from '../../ProductCatalogContext';
 
 export function useSelectedProductDetail() {
-  const { products, loading, loaded, error, reloadProducts } =
-    useContext(ProductDetailContext);
+  const {
+    products,
+    loading,
+    loaded: loadedProductDetail,
+    error,
+    reloadProducts,
+  } = useContext(ProductDetailContext);
+
+  const { loaded: loadedProductCatalog, productDetailIdToProductId } =
+    useContext(ProductCatalogContext);
   const [pageProducts, setProducts] = useState<ProductDetail[] | null>(null);
   const [productDetail, setProductDetail] = useState<ProductDetail | null>(
     null,
@@ -24,22 +35,33 @@ export function useSelectedProductDetail() {
     });
   }, [pathname]);
 
-  if (
-    pathSegments.length != 2 ||
-    !HOME_CATEGORIES_LIST.includes(pathSegments[0])
-  ) {
-    navigate('/404');
-  }
-
   const category = pathSegments[0];
   const itemId = pathSegments[1];
+
+  useEffect(() => {
+    debugger;
+    if (
+      itemId &&
+      loadedProductCatalog &&
+      !productDetailIdToProductId[getProductDetailId({ category, itemId })]
+    ) {
+      navigate('/404');
+    }
+  }, [
+    navigate,
+    category,
+    loadedProductCatalog,
+    productDetailIdToProductId,
+    itemId,
+  ]);
 
   useEffect(() => {
     if (loading) {
       return;
     }
 
-    if (loaded) {
+    debugger;
+    if (loadedProductDetail) {
       const currentPageProducts = products[category];
 
       if (!currentPageProducts) {
@@ -48,17 +70,17 @@ export function useSelectedProductDetail() {
 
       setProducts(currentPageProducts);
     }
-  }, [products, category, loading, loaded, reloadProducts]);
+  }, [products, category, loading, loadedProductDetail, reloadProducts]);
 
   useEffect(() => {
-    if (!loaded || !pageProducts) {
+    if (!loadedProductDetail || !pageProducts) {
       setProductDetail(null);
     } else {
       setProductDetail(
         pageProducts.find(product => product.id === itemId) || null,
       );
     }
-  }, [pageProducts, itemId, loaded]);
+  }, [pageProducts, itemId, loadedProductDetail]);
 
   return {
     productDetail,
