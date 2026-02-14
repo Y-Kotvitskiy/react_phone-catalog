@@ -69,7 +69,7 @@ export function useSelectedProductDetail() {
         navigate('/404');
       }
     }
-  }, [status, products, itemId, navigate]);
+  }, [status, products, category, itemId, navigate]);
 
   return {
     productDetail,
