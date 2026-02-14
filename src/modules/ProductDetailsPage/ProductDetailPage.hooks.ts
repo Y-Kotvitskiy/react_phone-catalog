@@ -8,38 +8,34 @@ import {
 } from '../../ProductCatalogContext';
 
 export function useSelectedProductDetail() {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const pathSegments = pathname.split('/').filter(segment => segment !== '');
+  const category = pathSegments[0] || '';
+  const itemId = pathSegments[1];
+
   const {
     products,
-    loading,
-    loaded: loadedProductDetail,
-    error,
+    statuses: { [category]: status = '' },
     reloadProducts,
   } = useContext(ProductDetailContext);
 
   const { loaded: loadedProductCatalog, productDetailIdToProductId } =
     useContext(ProductCatalogContext);
-  const [pageProducts, setProducts] = useState<ProductDetail[] | null>(null);
+
   const [productDetail, setProductDetail] = useState<ProductDetail | null>(
     null,
   );
 
-  const navigate = useNavigate();
-  const { pathname } = useLocation();
-  const pathSegments = pathname.split('/').filter(segment => segment !== '');
-
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'instant',
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      });
     });
   }, [pathname]);
 
-  const category = pathSegments[0];
-  const itemId = pathSegments[1];
-
   useEffect(() => {
-    debugger;
     if (
       itemId &&
       loadedProductCatalog &&
@@ -56,35 +52,28 @@ export function useSelectedProductDetail() {
   ]);
 
   useEffect(() => {
-    if (loading) {
-      return;
+    if (!status) {
+      reloadProducts(category);
     }
-
-    debugger;
-    if (loadedProductDetail) {
-      const currentPageProducts = products[category];
-
-      if (!currentPageProducts) {
-        reloadProducts(category);
-      }
-
-      setProducts(currentPageProducts);
-    }
-  }, [products, category, loading, loadedProductDetail, reloadProducts]);
+  }, [status, products, category, reloadProducts]);
 
   useEffect(() => {
-    if (!loadedProductDetail || !pageProducts) {
-      setProductDetail(null);
-    } else {
-      setProductDetail(
-        pageProducts.find(product => product.id === itemId) || null,
-      );
+    if (status === 'loaded' && products[category]) {
+      const currentPageProduct =
+        products[category].find(product => product.id === itemId) || null;
+
+      if (currentPageProduct) {
+        setProductDetail(currentPageProduct);
+      } else {
+        setProductDetail(null);
+        navigate('/404');
+      }
     }
-  }, [pageProducts, itemId, loadedProductDetail]);
+  }, [status, products, itemId, navigate]);
 
   return {
     productDetail,
-    loading,
-    error,
+    loading: !status || status === 'loading',
+    error: status === 'error',
   };
 }
