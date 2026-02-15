@@ -12,6 +12,7 @@ import { useContext, useMemo } from 'react';
 import { ProductCatalogContext } from '../../ProductCatalogContext';
 import CatalogSlider from '../shared/CatalogSlider';
 import BackButton from '../shared/BackButton';
+import Loader from '../shared/Loader';
 
 function getSuggestedProducts(
   catalogProducts: ProductCatalogItem[],
@@ -56,8 +57,10 @@ export const ProductDetailsPage = () => {
   return (
     <div className="container">
       <Breadcrumbs lastSegment={productDetail?.name} />
-      {loading && <p>Loading</p>}
-      {error && <p>error</p>}
+
+      {loading && <Loader className={styles.productDetail__loader} />}
+
+      {error && <p>Something went wrong!</p>}
 
       {loaded && productDetail && (
         <>
