@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { ProductDetailContext } from '../../ProductDetailContext';
 import { ProductDetail } from '../../types/ProductDetail';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -10,15 +10,17 @@ import {
 export function useSelectedProductDetail() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const pathSegments = pathname.split('/').filter(segment => segment !== '');
-  const category = pathSegments[0] || '';
-  const itemId = pathSegments[1];
 
-  const {
-    products,
-    statuses: { [category]: status = '' },
-    reloadProducts,
-  } = useContext(ProductDetailContext);
+  const [category, itemId] = useMemo(() => {
+    const segments = pathname.split('/').filter(Boolean);
+
+    return [segments[0] || '', segments[1]];
+  }, [pathname]);
+
+  const { products, statuses, reloadProducts } =
+    useContext(ProductDetailContext);
+
+  const status = statuses[category] ?? '';
 
   const { loaded: loadedProductCatalog, productDetailIdToProductId } =
     useContext(ProductCatalogContext);
@@ -59,21 +61,22 @@ export function useSelectedProductDetail() {
 
   useEffect(() => {
     if (status === 'loaded' && products[category]) {
-      const currentPageProduct =
-        products[category].find(product => product.id === itemId) || null;
+      const foundProduct =
+        products[category].find(p => p.id === itemId) || null;
 
-      if (currentPageProduct) {
-        setProductDetail(currentPageProduct);
-      } else {
-        setProductDetail(null);
+      setProductDetail(foundProduct);
+      if (!foundProduct) {
         navigate('/404');
       }
     }
   }, [status, products, category, itemId, navigate]);
 
+  const loaded = !(!status || status === 'loading' || status === 'error');
+
   return {
     productDetail,
     loading: !status || status === 'loading',
     error: status === 'error',
+    loaded,
   };
 }

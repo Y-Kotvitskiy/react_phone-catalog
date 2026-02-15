@@ -47,7 +47,7 @@ function getSuggestedProducts(
 export const ProductDetailsPage = () => {
   const { t } = useTranslation();
   const { products: catalogProducts } = useContext(ProductCatalogContext);
-  const { productDetail, loading, error } = useSelectedProductDetail();
+  const { productDetail, loading, error, loaded } = useSelectedProductDetail();
 
   const suggestedProducts = useMemo(() => {
     return getSuggestedProducts(catalogProducts, productDetail?.id || '');
@@ -58,7 +58,8 @@ export const ProductDetailsPage = () => {
       <Breadcrumbs lastSegment={productDetail?.name} />
       {loading && <p>Loading</p>}
       {error && <p>error</p>}
-      {productDetail && (
+
+      {loaded && productDetail && (
         <>
           <BackButton />
           <h1 className={styles.productDetail__title}>{productDetail.name}</h1>
@@ -66,7 +67,8 @@ export const ProductDetailsPage = () => {
           <ProductDetailBottom product={productDetail} />
         </>
       )}
-      {productDetail && catalogProducts.length > 0 && (
+
+      {loaded && productDetail && catalogProducts.length > 0 && (
         <CatalogSlider
           title={t('product-detail.may_like')}
           products={suggestedProducts}
