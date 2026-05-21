@@ -95,6 +95,20 @@
       mask-position: center center;
     }
 
+    &_sun {
+      background-color: $primary-color;
+      mask-image: url('/img/assets/icons/sun.svg');
+      mask-position: center center;
+      mask-size: contain;
+    }
+
+    &_moon {
+      background-color: $primary-color;
+      mask-image: url('/img/assets/icons/moon.svg');
+      mask-position: center center;
+      mask-size: contain;
+    }
+
     &_rotate_90 {
       transform: rotate(-90deg);
     }

@@ -6,6 +6,7 @@ import Icon from '../shared/Icon';
 import { SelectOption } from '../../types/SelectOptions';
 import { siteLanguages } from '../constants';
 import Select from '../shared/Select';
+import ThemeSwitcher from './ThemeSwitcher';
 
 export const Footer = () => {
   const { i18n } = useTranslation();
@@ -71,6 +72,7 @@ export const Footer = () => {
               onChange={selectLanguage}
               menuPlacementTop
             />
+            <ThemeSwitcher />
           </div>
           <div className={styles.footer__right}>
             <a>Back to top</a>

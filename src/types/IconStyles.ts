@@ -7,6 +7,8 @@ export type IconImageModifiers =
   | 'favorites_active'
   | 'arrowLeft'
   | 'arrowRight'
+  | 'sun'
+  | 'moon'
   | 'disabled'
   | 'rotate_90';
 
