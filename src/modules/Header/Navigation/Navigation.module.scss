@@ -34,17 +34,17 @@
   text-transform: uppercase;
   align-items: center;
 
-  color: #89939a;
+  color: $secondary-color;
 
   &__active {
-    color: $border-color-hover;
+    color: $primary-color;
 
     &::after {
       position: absolute;
       bottom: 0;
       width: 100%;
       content: '';
-      border-bottom: $border-color-hover solid 3px;
+      border-bottom: $border-hover-color solid 3px;
     }
   }
 

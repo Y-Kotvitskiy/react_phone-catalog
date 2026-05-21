@@ -4,7 +4,6 @@ $text-grey: #9b9b9b;
 
 .homeSlider {
   flex-direction: column;
-  background-color: #fff;
 
   @include page-grid;
 
@@ -13,12 +12,15 @@ $text-grey: #9b9b9b;
   }
 
   &__button {
+    position: relative;
     display: none;
     padding: 0;
-    border: 1px solid $border-color;
+    background-color: $btn-slider-bg-color;
+    border: 1px solid $btn-slider-border-color;
 
     &:hover {
-      border-color: $border-color-hover;
+      background-color: $btn-slider-bg-hover-color;
+      border-color: $btn-slider-border-hover-color;
     }
 
     @include on-tablet {
@@ -26,12 +28,11 @@ $text-grey: #9b9b9b;
     }
 
     &_left {
-      background: url('img/assets/icons/arrow_left.svg') no-repeat center center;
+      color: $primary-color;
     }
 
     &_right {
-      background: url('img/assets/icons/arrow_right.svg') no-repeat center
-        center;
+      color: $primary-color;
     }
   }
 }

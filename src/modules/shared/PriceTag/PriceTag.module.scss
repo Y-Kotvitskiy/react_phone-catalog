@@ -15,7 +15,7 @@
 
     &_old {
       position: relative;
-      color: $secondary-color-inverted;
+      color: $secondary-inverted-color;
       font-weight: 600;
       isolation: isolate;
       filter: invert(100%);
@@ -27,7 +27,7 @@
         width: 100%;
         top: 44%;
         height: 2px;
-        background-color: $secondary-color-inverted;
+        background-color: $secondary-inverted-color;
         mix-blend-mode: difference;
       }
     }

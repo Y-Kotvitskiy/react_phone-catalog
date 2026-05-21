@@ -50,7 +50,7 @@ $icon-gap: 2px;
     }
 
     &:focus {
-      border-color: $border-color-hover;
+      border-color: $border-hover-color;
     }
 
     &::placeholder {
@@ -91,7 +91,7 @@ $icon-gap: 2px;
 
     &:hover {
       @include hover(transform, translateY(-50%) scale($text_hover_transform));
-      @include hover(color, $border-color-hover);
+      @include hover(color, $border-hover-color);
     }
   }
 }
