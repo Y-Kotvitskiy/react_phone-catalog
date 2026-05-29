@@ -60,7 +60,7 @@ const ProductPagination: React.FC<Props> = ({
         iconStyles={
           increaseDisabled
             ? { image: ['arrowLeft', 'disabled'] }
-            : { icon: 'border', image: ['arrowLeft'] }
+            : { icon: ['border', 'type_pagination'], image: ['arrowLeft'] }
         }
         disabled={increaseDisabled}
       />
@@ -86,7 +86,7 @@ const ProductPagination: React.FC<Props> = ({
         iconStyles={
           decreaseDisabled
             ? { image: ['arrowRight', 'disabled'] }
-            : { icon: 'border', image: ['arrowRight'] }
+            : { icon: ['border', 'type_pagination'], image: ['arrowRight'] }
         }
         disabled={decreaseDisabled}
       />

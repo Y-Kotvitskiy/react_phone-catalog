@@ -18,15 +18,27 @@
     align-items: center;
     height: 100%;
     aspect-ratio: 1/1;
-    border: 1px solid transparent;
+    color: $btn-pg-color;
+    border: 1px solid $btn-pg-border-color;
+    background-color: $btn-pg-bg-color;
     box-sizing: border-box;
 
     @extend %body-text;
-    @include hover(border-color, $primary-color);
+
+    &:hover {
+      border-color: $btn-pg-border-hover-color;
+      background-color: $btn-pg-bg-hover-color;
+    }
 
     &_active {
-      color: $body-background-color;
-      background-color: $primary-color;
+      color: $btn-pg-selected-color;
+      background-color: $btn-pg-selected-hover-bg-color;
+      cursor: default;
+
+      &:hover {
+        color: $btn-pg-selected-color;
+        background-color: $btn-pg-selected-hover-bg-color;
+      }
     }
   }
 
