@@ -19,7 +19,9 @@ type IconTypes =
   | 'border_bottom'
   | 'width_100'
   | 'type_slider'
-  | 'type_slider__disabled';
+  | 'type_slider__disabled'
+  | 'type_add'
+  | 'type_add__selected';
 
 export interface IconStyles {
   icon?: IconTypes | IconTypes[];

@@ -3,21 +3,22 @@
 .button {
   width: 100%;
   height: 100%;
-  border: none;
-  background-color: $primary-color;
-
-  color: $body-background-color;
   font-weight: 700;
+  color: btn-get('primary-btn', 'color');
+  background-color: btn-get('primary-btn', 'bg');
+  border: none;
 
   &_selected {
-    background-color: transparent;
-    color: $selected-button-color;
+    color: btn-get('primary-btn', 'color-selected');
+    background-color: btn-get('primary-btn', 'bg-selected');
   }
 
   @extend %buttons;
 
   &:hover {
-    box-shadow: 0 3px 13px 0 $button-hover-color;
+    box-shadow: btn-get('primary-btn', 'hover-shadow');
+
+    @include hover(background-color, btn-get('primary-btn', 'bg-hover'));
   }
 
   &_message {

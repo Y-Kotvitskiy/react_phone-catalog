@@ -53,6 +53,22 @@
     }
   }
 
+  &_type_add {
+    background-color: btn-get('add-btn', 'bg');
+    border: btn-get('add-btn', 'border');
+    @include hover(background-color, btn-get('add-btn', 'bg-hover'));
+
+    &:hover {
+      background-color: btn-get('add-btn', 'bg-hover');
+      border: btn-get('add-btn', 'border-hover');
+    }
+
+    &__selected {
+      background-color: btn-get('add-btn', 'bg-selected');
+      border: btn-get('add-btn', 'border-selected');
+    }
+  }
+
   &_width_100 {
     width: 100%;
   }

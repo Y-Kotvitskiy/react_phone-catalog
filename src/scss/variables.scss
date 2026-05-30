@@ -9,13 +9,11 @@
   --surface2: #3b3e4a;
   --border: #b4bdc4;
   --border-hover: #313237;
-  --selected-button: #27ae60;
   --icons: #b4bdc3;
-  --background: #fafbfc;
   --white: #fff;
   --red: #eb5757;
+  --green: #27ae60;
   --elements: #e2e6e9;
-  --button-hover: #17203166;
   --black: #000;
   --error-background: #b87e7e80;
   --body-background: var(--white);
@@ -31,8 +29,8 @@
   --accent: #905bff;
   --red: #eb5757;
   --elements: #3b3e4a;
-  --body-background: var(--black);
   --primary: var(--white);
+  --body-background: var(--black);
 }
 
 /* #region Pagination Button */
@@ -98,8 +96,70 @@ $button-theme: (
         light: var(--white),
         dark: var(--icons),
       ),
-    )
-    // #endregion Slider Button Theme,
+    ),
+  // #endregion Slider Button Theme
+  // #region Primary Button Theme
+  'primary-btn':
+    (
+      'color': (
+        light: var(--white),
+        dark: var(--white),
+      ),
+      'bg': (
+        light: var(--primary),
+        dark: var(--accent),
+      ),
+      'bg-hover': (
+        light: var(--primary),
+        dark: #a378ff,
+      ),
+      'hover-shadow': (
+        light: 0px 3px 13px 0px #17203166,
+        dark: none,
+      ),
+      'color-selected': (
+        light: var(--green),
+        dark: var(--primary),
+      ),
+      'border-selected': (
+        light: var(--elements),
+        dark: var(--surface2),
+      ),
+      'bg-selected': (
+        light: transparent,
+        dark: var(--surface2),
+      ),
+    ),
+  // #endregion Primary Button Theme
+  // #region Add Button Theme
+  'add-btn':
+    (
+      'bg': (
+        light: transparent,
+        dark: var(--surface2),
+      ),
+      'border': (
+        light: 1px solid var(--icons),
+        dark: none,
+      ),
+      'bg-hover': (
+        light: transparent,
+        dark: var(--icons),
+      ),
+      'border-hover': (
+        light: 1px solid var(--primary),
+        dark: none,
+      ),
+      'bg-selected': (
+        light: transparent,
+        dark: transparent,
+      ),
+      'border-selected': (
+        light: 1px solid var(--elements),
+        dark: 1px solid var(--elements),
+      ),
+    ),
+  // #endregion Add Button Theme
 );
 
 @each $theme in ('light', 'dark') {
