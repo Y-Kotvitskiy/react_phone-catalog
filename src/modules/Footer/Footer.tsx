@@ -80,7 +80,7 @@ export const Footer = () => {
             <Icon
               onClick={scrollToTop}
               iconStyles={{
-                icon: 'border',
+                icon: 'type_slider',
                 image: ['arrowRight', 'rotate_90'],
               }}
             />
