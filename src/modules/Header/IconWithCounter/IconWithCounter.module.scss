@@ -19,12 +19,18 @@
   }
 
   &_linkActive {
+    box-shadow: btn-get('mobile-menu-btn', 'box-shadow');
+
+    @include on-tablet {
+      box-shadow: none;
+    }
+
     &::after {
       position: absolute;
       bottom: 0;
       width: 100%;
       content: '';
-      border-bottom: $border-hover-color solid 3px;
+      border-bottom: $primary-color solid 3px;
     }
   }
 

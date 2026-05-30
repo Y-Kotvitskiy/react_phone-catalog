@@ -21,8 +21,8 @@ type IconTypes =
   | 'type_slider'
   | 'type_slider__disabled'
   | 'type_add'
-  | 'type_add__selected';
-
+  | 'type_add__selected'
+  | 'type_mobile_menu';
 export interface IconStyles {
   icon?: IconTypes | IconTypes[];
   image: IconImageModifiers | IconImageModifiers[];

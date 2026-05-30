@@ -69,6 +69,10 @@
     }
   }
 
+  &_type_mobile_menu {
+    box-shadow: btn-get('mobile-menu-btn', 'box-shadow');
+  }
+
   &_width_100 {
     width: 100%;
   }

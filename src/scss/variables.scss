@@ -8,7 +8,6 @@
   --surface1: #3b3e4a;
   --surface2: #3b3e4a;
   --border: #b4bdc4;
-  --border-hover: #313237;
   --icons: #b4bdc3;
   --white: #fff;
   --red: #eb5757;
@@ -160,6 +159,19 @@ $button-theme: (
       ),
     ),
   // #endregion Add Button Theme
+  // #region MobileMenu Button Theme
+  'mobile-menu-btn':
+    (
+      'border-top': (
+        light: none,
+        dark: 1px solid var(--elements),
+      ),
+      'box-shadow': (
+        light: none,
+        dark: -1px 0px 0px 0px var(--surface2),
+      ),
+    ),
+  // #endregion MobileMenu Button ThemeMobileMenu
 );
 
 @each $theme in ('light', 'dark') {
@@ -182,7 +194,6 @@ $secondary-inverted-color: var(--secondary-inverted);
 $surface1-color: var(--surface1);
 $surface2-color: var(--surface2);
 $border-color: var(--border);
-$border-hover-color: var(--border-hover);
 $error-background-color: var(--error-background);
 $selected-button-color: var(--selected-button);
 $icon-color: var(--icons);
