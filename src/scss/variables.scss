@@ -1,3 +1,6 @@
+@use 'sass:map';
+@use 'sass:string';
+
 :root[data-theme='light'] {
   --primary: #313237;
   --secondary: #89939a;
@@ -7,51 +10,111 @@
   --border: #b4bdc4;
   --border-hover: #313237;
   --selected-button: #27ae60;
-  --icon: #b4bdc3;
+  --icons: #b4bdc3;
   --background: #fafbfc;
-  --body-background: #fff;
-  --white: #f1f2f9;
+  --white: #fff;
   --red: #eb5757;
   --elements: #e2e6e9;
   --button-hover: #17203166;
+  --black: #000;
   --error-background: #b87e7e80;
-  --btn-slider-bg: #fff;
-  --btn-slider-bg-hover: #fff;
-  --btn-slider-border: #b4bdc4;
-  --btn-slider-border-hover: #313237;
-  --btn-pg-border: var(--elements);
-  --btn-pg: #000;
-  --btn-pg-bg: transparent;
-  --btn-pg-border-hover: #313237;
-  --btn-pg-bg-hover: #fff;
-  --btn-pg-selected: var(--white);
-  --btn-pg-selected-hover-bg: var(--primary);
+  --body-background: var(--white);
 }
 
 :root[data-theme='dark'] {
   --black: #0f1121;
-  --primary: #f1f2f9;
   --secondary: #75767f;
   --surface1: #161827;
   --surface2: #323542;
   --icons: #4a4d58;
-  --white: #fff;
+  --white: #f1f2f9;
   --accent: #905bff;
   --red: #eb5757;
   --elements: #3b3e4a;
   --body-background: var(--black);
-  --btn-slider-bg: #323542;
-  --btn-slider-bg-hover: #4a4d58;
-  --btn-slider-border: #323542;
-  --btn-slider-border-hover: var(--icons);
-  --btn-pg-border: var(--surface1);
-  --btn-pg: var(--white);
-  --btn-pg-bg: var(--surface1);
-  --btn-pg-border-hover: var(--icons);
-  --btn-pg-bg-hover: var(--icons);
-  --btn-pg-selected: var(--white);
-  --btn-pg-selected-hover-bg: var(--accent);
+  --primary: var(--white);
 }
+
+/* #region Pagination Button */
+
+$button-theme: (
+  // #region Pagination Button Theme
+  'pg-btn':
+    (
+      'border': (
+        light: var(--elements),
+        dark: var(--surface1),
+      ),
+      'color': (
+        light: var(--black),
+        dark: var(--white),
+      ),
+      'bg': (
+        light: transparent,
+        dark: var(--surface1),
+      ),
+      'border-hover': (
+        light: var(--primary),
+        dark: var(--icons),
+      ),
+      'bg-hover': (
+        light: var(--white),
+        dark: var(--icons),
+      ),
+      'selected': (
+        light: var(--white),
+        dark: var(--white),
+      ),
+      'selected-hover-bg': (
+        light: var(--primary),
+        dark: var(--accent),
+      ),
+    ),
+  // #endregion Pagination Button Theme
+  // #region Slider Button Theme
+  'slider-btn':
+    (
+      'color': (
+        light: var(--primary),
+        dark: var(--white),
+      ),
+      'color-disabled': (
+        light: var(--icons),
+        dark: var(--icons),
+      ),
+      'bg': (
+        light: transparent,
+        dark: var(--surface2),
+      ),
+      'bg-hover': (
+        light: transparent,
+        dark: var(--icons),
+      ),
+      'border-hover': (
+        light: var(--primary),
+        dark: var(--icons),
+      ),
+      'border-disabled': (
+        light: var(--white),
+        dark: var(--icons),
+      ),
+    )
+    // #endregion Slider Button Theme,
+);
+
+@each $theme in ('light', 'dark') {
+  :root[data-theme='#{$theme}'] {
+    @each $btn-name, $properties in $button-theme {
+      @each $prop-key, $theme-map in $properties {
+        @if map.has-key($theme-map, $theme) {
+          --#{$btn-name}-#{$prop-key}: #{map.get($theme-map, $theme)};
+        }
+      }
+    }
+  }
+}
+
+/* #endregion */
 
 $primary-color: var(--primary);
 $secondary-color: var(--secondary);
@@ -62,23 +125,12 @@ $border-color: var(--border);
 $border-hover-color: var(--border-hover);
 $error-background-color: var(--error-background);
 $selected-button-color: var(--selected-button);
-$icon-color: var(--icon);
+$icon-color: var(--icons);
 $background-color: var(--background);
 $body-background-color: var(--body-background);
 $white-color: var(--white);
 $red-color: var(--red);
 $elements-color: var(--elements);
-$btn-slider-bg-color: var(--btn-slider-bg);
-$btn-slider-bg-hover-color: var(--btn-slider-bg-hover);
-$btn-slider-border-color: var(--btn-slider-border);
-$btn-slider-border-hover-color: var(--btn-slider-border-hover);
-$btn-pg-color: var(--btn-pg);
-$btn-pg-bg-color: var(--btn-pg-bg);
-$btn-pg-border-color: var(--btn-pg-border);
-$btn-pg-border-hover-color: var(--btn-pg-border-hover);
-$btn-pg-bg-hover-color: var(--btn-pg-bg-hover);
-$btn-pg-selected-color: var(--btn-pg-selected);
-$btn-pg-selected-hover-bg-color: var(--btn-pg-selected-hover-bg);
 $header-max-width: 1440px;
 $body-min-width: 320px;
 $grid-column-desktop: 32px;

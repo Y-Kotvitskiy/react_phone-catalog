@@ -17,7 +17,9 @@ type IconTypes =
   | 'type_mobile'
   | 'border'
   | 'border_bottom'
-  | 'width_100';
+  | 'width_100'
+  | 'type_slider'
+  | 'type_slider__disabled';
 
 export interface IconStyles {
   icon?: IconTypes | IconTypes[];

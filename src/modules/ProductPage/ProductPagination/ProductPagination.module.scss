@@ -2,9 +2,9 @@
 
 .pagination {
   display: flex;
+  gap: 8px;
   width: fit-content;
   height: 32px;
-  gap: 8px;
   margin-inline: auto;
 
   &:first-child {
@@ -12,32 +12,32 @@
   }
 
   &__link {
+    box-sizing: border-box;
     display: flex;
-    width: fit-content;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    width: fit-content;
     height: 100%;
     aspect-ratio: 1/1;
-    color: $btn-pg-color;
-    border: 1px solid $btn-pg-border-color;
-    background-color: $btn-pg-bg-color;
-    box-sizing: border-box;
+    color: btn-get('pg-btn', 'color');
+    background-color: btn-get('pg-btn', 'bg');
+    border: 1px solid btn-get('pg-btn', 'border');
 
     @extend %body-text;
 
     &:hover {
-      border-color: $btn-pg-border-hover-color;
-      background-color: $btn-pg-bg-hover-color;
+      background-color: btn-get('pg-btn', 'bg-hover');
+      border-color: btn-get('pg-btn', 'border-hover');
     }
 
     &_active {
-      color: $btn-pg-selected-color;
-      background-color: $btn-pg-selected-hover-bg-color;
+      color: btn-get('pg-btn', 'selected');
       cursor: default;
+      background-color: btn-get('pg-btn', 'selected-hover-bg');
 
       &:hover {
-        color: $btn-pg-selected-color;
-        background-color: $btn-pg-selected-hover-bg-color;
+        color: btn-get('pg-btn', 'selected');
+        background-color: btn-get('pg-btn', 'selected-hover-bg');
       }
     }
   }
