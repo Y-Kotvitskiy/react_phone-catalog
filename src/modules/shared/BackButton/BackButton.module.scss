@@ -14,7 +14,7 @@
 
   line-height: 100%;
 
-  color: btn-get('back-btn', 'color');
+  color: theme-get('back-btn', 'color');
   border: none;
 
   @include on-tablet {

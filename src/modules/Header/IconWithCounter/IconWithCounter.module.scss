@@ -19,7 +19,7 @@
   }
 
   &_linkActive {
-    box-shadow: btn-get('mobile-menu-btn', 'box-shadow');
+    box-shadow: theme-get('mobile-menu-btn', 'box-shadow');
 
     @include on-tablet {
       box-shadow: none;

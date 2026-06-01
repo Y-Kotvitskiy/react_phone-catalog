@@ -44,33 +44,33 @@
   }
 
   &_type_slider {
-    background-color: btn-get('slider-btn', 'bg');
-    @include hover(background-color, btn-get('slider-btn', 'bg-hover'));
+    background-color: theme-get('slider-btn', 'bg');
+    @include hover(background-color, theme-get('slider-btn', 'bg-hover'));
 
     &__disabled {
-      background-color: btn-get('slider-btn', 'bg-border-disabled');
-      border: 1px solid btn-get('slider-btn', 'border-disabled');
+      background-color: theme-get('slider-btn', 'bg-border-disabled');
+      border: 1px solid theme-get('slider-btn', 'border-disabled');
     }
   }
 
   &_type_add {
-    background-color: btn-get('add-btn', 'bg');
-    border: btn-get('add-btn', 'border');
-    @include hover(background-color, btn-get('add-btn', 'bg-hover'));
+    background-color: theme-get('add-btn', 'bg');
+    border: theme-get('add-btn', 'border');
+    @include hover(background-color, theme-get('add-btn', 'bg-hover'));
 
     &:hover {
-      background-color: btn-get('add-btn', 'bg-hover');
-      border: btn-get('add-btn', 'border-hover');
+      background-color: theme-get('add-btn', 'bg-hover');
+      border: theme-get('add-btn', 'border-hover');
     }
 
     &__selected {
-      background-color: btn-get('add-btn', 'bg-selected');
-      border: btn-get('add-btn', 'border-selected');
+      background-color: theme-get('add-btn', 'bg-selected');
+      border: theme-get('add-btn', 'border-selected');
     }
   }
 
   &_type_mobile_menu {
-    box-shadow: btn-get('mobile-menu-btn', 'box-shadow');
+    box-shadow: theme-get('mobile-menu-btn', 'box-shadow');
   }
 
   &_width_100 {
@@ -146,7 +146,7 @@
     }
 
     &_disabled {
-      background-color: btn-get('slider-btn', 'color-disabled');
+      background-color: theme-get('slider-btn', 'color-disabled');
     }
   }
 }

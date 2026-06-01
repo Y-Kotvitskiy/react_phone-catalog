@@ -47,13 +47,19 @@ export const Header = () => {
                 href="favorites"
                 count={favoritesCount}
                 image={'favorites'}
+                mobileMenu
               />
-              <IconWithCounter href="cart" count={itemsCount} image={'cart'} />
+              <IconWithCounter
+                href="cart"
+                count={itemsCount}
+                image={'cart'}
+                mobileMenu
+              />
             </div>
             <Icon
               onClick={handleMobileMenuClick}
               iconStyles={{
-                icon: 'type_mobile',
+                icon: ['type_mobile', 'type_mobile_menu'],
                 image: showMobile ? 'close' : 'menu',
               }}
             />

@@ -1,3 +1,3 @@
-@function btn-get($name, $prop) {
+@function theme-get($name, $prop) {
   @return var(--#{$name}-#{$prop});
 }

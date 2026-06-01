@@ -181,7 +181,13 @@ $button-theme: (
         light: var(--secondary),
         dark: var(--white),
       ),
-    )
+    ),
+  header: (
+    'box-shadow': (
+      light: none,
+      dark: 0px 1px 0px 0px var(--elements),
+    ),
+  )
 );
 
 @each $theme in ('light', 'dark') {

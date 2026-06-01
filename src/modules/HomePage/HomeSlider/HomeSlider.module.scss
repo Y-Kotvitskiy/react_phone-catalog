@@ -15,12 +15,12 @@ $text-grey: #9b9b9b;
     position: relative;
     display: none;
     padding: 0;
-    background-color: btn-get('slider-btn', 'bg');
-    border: 1px solid btn-get('slider-btn', 'border');
+    background-color: theme-get('slider-btn', 'bg');
+    border: 1px solid theme-get('slider-btn', 'border');
 
     &:hover {
-      background-color: btn-get('slider-btn', 'bg-hover');
-      border: 1px solid btn-get('slider-btn', 'border-hover');
+      background-color: theme-get('slider-btn', 'bg-hover');
+      border: 1px solid theme-get('slider-btn', 'border-hover');
     }
 
     @include on-tablet {

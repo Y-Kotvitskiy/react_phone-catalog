@@ -4,21 +4,21 @@
   width: 100%;
   height: 100%;
   font-weight: 700;
-  color: btn-get('primary-btn', 'color');
-  background-color: btn-get('primary-btn', 'bg');
+  color: theme-get('primary-btn', 'color');
+  background-color: theme-get('primary-btn', 'bg');
   border: none;
 
   &_selected {
-    color: btn-get('primary-btn', 'color-selected');
-    background-color: btn-get('primary-btn', 'bg-selected');
+    color: theme-get('primary-btn', 'color-selected');
+    background-color: theme-get('primary-btn', 'bg-selected');
   }
 
   @extend %buttons;
 
   &:hover {
-    box-shadow: btn-get('primary-btn', 'hover-shadow');
+    box-shadow: theme-get('primary-btn', 'hover-shadow');
 
-    @include hover(background-color, btn-get('primary-btn', 'bg-hover'));
+    @include hover(background-color, theme-get('primary-btn', 'bg-hover'));
   }
 
   &_message {

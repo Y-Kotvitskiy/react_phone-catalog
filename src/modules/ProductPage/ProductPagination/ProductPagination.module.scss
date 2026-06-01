@@ -19,25 +19,25 @@
     width: fit-content;
     height: 100%;
     aspect-ratio: 1/1;
-    color: btn-get('pg-btn', 'color');
-    background-color: btn-get('pg-btn', 'bg');
-    border: 1px solid btn-get('pg-btn', 'border');
+    color: theme-get('pg-btn', 'color');
+    background-color: theme-get('pg-btn', 'bg');
+    border: 1px solid theme-get('pg-btn', 'border');
 
     @extend %body-text;
 
     &:hover {
-      background-color: btn-get('pg-btn', 'bg-hover');
-      border-color: btn-get('pg-btn', 'border-hover');
+      background-color: theme-get('pg-btn', 'bg-hover');
+      border-color: theme-get('pg-btn', 'border-hover');
     }
 
     &_active {
-      color: btn-get('pg-btn', 'selected');
+      color: theme-get('pg-btn', 'selected');
       cursor: default;
-      background-color: btn-get('pg-btn', 'selected-hover-bg');
+      background-color: theme-get('pg-btn', 'selected-hover-bg');
 
       &:hover {
-        color: btn-get('pg-btn', 'selected');
-        background-color: btn-get('pg-btn', 'selected-hover-bg');
+        color: theme-get('pg-btn', 'selected');
+        background-color: theme-get('pg-btn', 'selected-hover-bg');
       }
     }
   }
