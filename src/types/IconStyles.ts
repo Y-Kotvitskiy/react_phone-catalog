@@ -3,6 +3,7 @@ export type IconImageModifiers =
   | 'cart'
   | 'close'
   | 'home'
+  | 'home__active'
   | 'menu'
   | 'favorites_active'
   | 'arrowLeft'

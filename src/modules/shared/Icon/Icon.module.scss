@@ -108,6 +108,10 @@
       background-color: $icon-color;
       mask-image: url('/img/assets/icons/home.svg');
       mask-position: center center;
+
+      &__active {
+        background-color: $primary-color;
+      }
     }
 
     &_menu {
